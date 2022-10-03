@@ -1,0 +1,40 @@
+{% extends 'store/main.html' %}
+{% block content %}
+<!-- content of store page -->
+<div class=" text-4xl  " >
+    checkout
+</div>
+<div class="w-full px-32 ">
+    <div class="p-3 shadow-md">
+        <a href=" {% url 'store' %} ">
+        <div class="bg-yellow-400 w-fit ">
+            <div class="inline-block px-3 py-2 bg-yellow-500 "><</div>
+            <div class="inline-block px-2 py-2 text-sm ">continue shopping</div>
+        </div>
+        </a>
+        <hr class="my-2">
+        <div>
+            <p>Items: 3</p>
+            <p>Total: $34</p>
+            <p class="px-3 py-2 bg-green-300 inline-block mt-2">Checkout</p>
+        </div>
+    </div>
+    <div class="my-2 shadow-md">
+        <table class=" w-full ">
+            <tr class="divide-x-2 bg-gray-100 ">
+                <th class="w-64 "></th>
+                <th class="font-bold py-2 w-40">Item</th>
+                <th class="font-bold py-2 w-40">Price</th>
+                <th class="font-bold py-2 w-40">Quantity</th>
+                <th class="font-bold py-2 w-40">Total</th>
+            </tr>
+            <tr>
+                <td>
+                    <img src=" {% url 'images/Smartwatch1.jpg' %} " alt="">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
