@@ -4,16 +4,33 @@
 <!-- content of store page -->
 <!-- main grid for product display -->
 <div class=" px-32  ">
-    <div class="p-3 bg-gray-300 grid grid-cols-6 gap-2">
+    <div class="p-4">
+        <form method="post">
+            {% csrf_token %}
+            <select name="category" id="CATEGORY">
+                <option value="all" {% if category == 'all' %}selected{% endif %} >All</option>
+                <option value="laptopaccessories" {% if category == 'laptopaccessories' %}selected{% endif %} >Laptop & accessories</option>
+                <option value="electronics" {% if category == 'electronics' %}selected{% endif %}>Electronics</option>
+                <option value="apparel" {% if category == 'apparel' %}selected{% endif %}>Apparel</option>
+                <option value="smartphones" {% if category == 'smartphones' %}selected{% endif %}>Smartphones</option>
+                <option value="speakers" {% if category == 'speakers' %}selected{% endif %}>Speakers</option>
+            </select>
+            <input type="submit" value="filter" class=" cursor-pointer ">
+        </form>
+    </div>
+    <div class="p-3  grid grid-cols-6 gap-2">
     <!-- container for each product -->
-        <div class=" border border-gray-400 rounded bg-blue-50   p-4">
-            <div class=" w-full h-64 object-cover  " >
-            <img src=" {% static 'images/Smartwatch1.jpg' %} " alt="" class="  w-full h-full bg-cover object-cover ">
+    {% for product in products %}
+        <div class=" shadow-md rounded bg-blue-50  flex flex-col justify-between p-4">
+            <div>
+                <div class=" w-full h-64 object-cover bg-white " >
+                <img src="{{ product.imageURL }}" alt="" class="  w-full h-full bg-cover object-contain ">
+                </div>
+                <div class=" py-3 text-sm font-bold ">{{ product.name }} </div>
             </div>
-            <div class=" pb-3 font-bold">Product</div>
             <div class="flex justify-between items-center">
                 <div class="inline-block">
-                    <p class= "inline-block "> <span class="text-sm align-top ">₹</span>566 </p>
+                    <p class= "inline-block "> <span class="text-sm align-top">₹</span><span class=" font-bold ">{{ product.price|floatformat }} </span></p>
                 </div>
                 <div class="inline-block">
                     <a href="" class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white">
@@ -23,23 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class=" border border-gray-400 rounded bg-blue-50   p-4">
-            <div class=" w-full h-64 object-cover  " >
-            <img src=" {% static 'images/Smartwatch1.jpg' %} " alt="" class="  w-full h-full bg-cover object-cover ">
-            </div>
-            <div class=" pb-3 font-bold">Product</div>
-            <div class="flex justify-between items-center">
-                <div class="inline-block">
-                    <p class= "inline-block "> <span class="text-sm align-top ">₹</span>566 </p>
-                </div>
-                <div class="inline-block">
-                    <a href="" class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white">
-                        <button>Add to cart</button>
-                    </a>
-                    <a href="#" class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white">View</a>
-                </div>
-            </div>
-        </div>
+    {% endfor %}
     </div>
 </div>
 <!-- product display grid ending ^ -->

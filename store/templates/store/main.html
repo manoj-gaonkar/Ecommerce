@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href=" {% static 'css/main.css' %} ">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href=" {% static 'css/main.css' %} " />
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <title>Ecommerce</title>
-</head>
-<body>
-    <div class=" flex justify-between items-center px-32 py-2">
-        <header>
-            <a class=" text-2xl font-bold " href="{% url 'store' %}">ECOM</a>
-        </header>
-        <nav>
-            <ul class=" flex justify-between items-center ">
-                <li class="px-4">
-                    <a href="{% url 'store' %}">store</a>
-                </li>
-                <li class="px-4">
-                    <button class="px-3 py-2 bg-gray-700 text-white rounded">Login</button>
-                </li>
-                <li class="px-4">
-                    <a href=" {% url 'cart' %}" class=" relative  inline-block">
-                        <span class="material-symbols-outlined scale-[1.5]">
-                            shopping_cart
-                        </span>
-                        <p class='inline absolute -top-3 -right-3  w-5 text-center h-5 bg-red-500 p-1 rounded-full text-xs text-white'>0</p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+  </head>
+  <body>
+    <div class="flex justify-between items-center px-32 py-2">
+      <header>
+        <a class="text-2xl font-bold" href="{% url 'store' %}">ECOM</a>
+      </header>
+      <nav>
+        <ul class="flex justify-between items-center">
+          <li class="px-4">
+            <a href="{% url 'store' %}">store</a>
+          </li>
+          <li class="px-4">
+            <button class="px-3 py-2 bg-gray-700 text-white rounded">
+              Login
+            </button>
+          </li>
+          <li class="px-4">
+            <a href=" {% url 'cart' %}" class="relative inline-block">
+              <span class="material-symbols-outlined scale-[1.5]">
+                shopping_cart
+              </span>
+              <p
+                class="inline absolute -top-3 -right-3 w-5 text-center h-5 bg-red-500 p-1 rounded-full text-xs text-white"
+              >
+                0
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <hr>
+    <hr />
     {% block content %}
     <!--content block extneding to other page-->
     {% endblock content %}
-</body>
+   
+  </body>
 </html>

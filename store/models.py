@@ -9,19 +9,34 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class Product(models.Model):
     CATEGORY =(
         ('all','All'),
         ('laptopaccessories','Laptop & accessories'),
         ('electronics','electronics'),
+        ('apparel','Apparel'),
+        ('smartphones','Smartphones'),
+        ('speakers','Speakers'),
     )
     name = models.CharField(max_length=100, null=True)
     price = models.FloatField()
     digital = models.BooleanField(default=False, null=True, blank=False )
-    # Image
+    category = models.CharField(default='all', choices=CATEGORY, max_length=200, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
      
     def __str__(self):
-        return name
+        return self.name
+    # if there is no image for a certain product it shows an error so to encounter that we use @property 
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 class Orders(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -44,5 +59,15 @@ class OrderItem(models.Model):
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Orders, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    state = models.CharField(max_length=200, null=True)
+    pincode = models.CharField(max_length=200, null=True)
+    order_date = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return self.address
+    
 
     
