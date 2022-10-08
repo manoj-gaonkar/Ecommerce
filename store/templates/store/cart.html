@@ -12,8 +12,8 @@
         </a>
         <hr class="my-2">
         <div>
-            <p>Items: 3</p>
-            <p>Total: $34</p>
+            <p>Items: {{order.get_cart_items}}</p>
+            <p>Total: ${{order.get_cart_total|floatformat:2}}</p>
             <a href=" {% url 'checkout' %} ">
                 <p class="px-3 py-2 bg-green-300 inline-block mt-2">Checkout</p>
             </a>
@@ -23,25 +23,27 @@
         <div class="p-4">Your Orders</div>
         <hr class="mb-4">
         <!-- for a single container of product -->
+        {% for item in items  %}
         <div class=" flex p-3 justify-start items-start m-3 border border-gray-100 rounded ">
             
             <div class="shadow">
-                <img src=" {% static 'images/Smartwatch1.jpg' %} " alt="" class=" w-64 ">
+                <img src=" {{ item.product.imageURL }} " alt="" class=" w-64 ">
             </div>
             <div class=" p-4 ">
-                <p class=" font-bold text-3xl ">Product 1</p>
-                <p class=" font-bold ">$20</p>
+                <p class=" font-bold text-3xl ">{{item.product.name}}</p>
+                <p class=" font-bold ">${{item.product.price|floatformat:2}}</p>
                 <p class="flex justify-start items-center">
-                    <span class="inline-block">Quantity: 1</span>
+                    <span class="inline-block">Quantity: {{item.quantity}} </span>
                     <span class='inline-flex flex-col px-4'>
                         <a href=""><img src=" {% static 'images/up_arrow.png' %} " alt=""   class="hover:bg-gray-200  w-4 "></a>
                         <a href=""><img src=" {% static 'images/down_arrow.png' %} " alt="" class="hover:bg-gray-200  w-4 "></a>
                     </span>
                 </p>
-                <span class="inline-block ">Total: <span class = " font-bold ">$27</span> </span>
+                <span class="inline-block ">Total: <span class = " font-bold ">${{item.get_total|floatformat:2}}</span> </span>
 
             </div>
         </div>
+        {% endfor %}
         <!-- end of single container of product -->
     </div>
 </div>

@@ -4,10 +4,10 @@
 <!-- content of store page -->
 <!-- main grid for product display -->
 <div class=" px-32  ">
-    <div class="p-4">
-        <form method="post">
+    <div class="px-3">
+        <form method="post" class="flex justify-start w-fit items-center">
             {% csrf_token %}
-            <select name="category" id="CATEGORY">
+            <select name="category" id="CATEGORY" class="bg-transparent border-b px-3 py-2 outline-blue-200">
                 <option value="all" {% if category == 'all' %}selected{% endif %} >All</option>
                 <option value="laptopaccessories" {% if category == 'laptopaccessories' %}selected{% endif %} >Laptop & accessories</option>
                 <option value="electronics" {% if category == 'electronics' %}selected{% endif %}>Electronics</option>
@@ -15,10 +15,14 @@
                 <option value="smartphones" {% if category == 'smartphones' %}selected{% endif %}>Smartphones</option>
                 <option value="speakers" {% if category == 'speakers' %}selected{% endif %}>Speakers</option>
             </select>
-            <input type="submit" value="filter" class=" cursor-pointer ">
+            <button type="submit" class="cursor-pointer px-3 ">
+                <span class="material-symbols-outlined text-center align-middle ">
+                chevron_right
+                </span>
+            </button>
         </form>
     </div>
-    <div class="p-3  grid grid-cols-6 gap-2">
+    <div class="p-3  grid grid-cols-3 md:grid-cols-6 gap-4">
     <!-- container for each product -->
     {% for product in products %}
         <div class=" shadow-md rounded bg-blue-50  flex flex-col justify-between p-4">
@@ -30,10 +34,10 @@
             </div>
             <div class="flex justify-between items-center">
                 <div class="inline-block">
-                    <p class= "inline-block "> <span class="text-sm align-top">₹</span><span class=" font-bold ">{{ product.price|floatformat }} </span></p>
+                    <p class= "inline-block "> <span class="text-sm align-top">₹</span><span class=" font-bold ">{{ product.price|floatformat:2 }} </span></p>
                 </div>
                 <div class="inline-block">
-                    <a href="" class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white">
+                    <a  class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white update-cart" data-product="{{product.id}}" data-action="add">
                         <button>Add to cart</button>
                     </a>
                     <a href="#" class="inline-block px-2 py-2 border border-gray-600 rounded text-sm hover:bg-gray-500 hover:border-transparent hover:text-white">View</a>
